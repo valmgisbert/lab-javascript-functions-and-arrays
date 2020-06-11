@@ -9,27 +9,44 @@ function maxOfTwoNumbers(num1, num2) {
 maxOfTwoNumbers(2, 7);
 // Iteration #2: Find longest word
 const words = ['mystery', 'brother', 'aviator', 'crocodile', 'pearl', 'orchard', 'crackpot'];
-var largestWord = "";
+
 function findLongestWord(array) {
-  if (array.length === 0) {
-    return null;
-  } else {
-      for (var i = 0; i < array.length; i++) {
-        if (array[i].length >= largestWord.length) {
-          largestWord = array[i];
-        }
+  var largestWord = '';
+  if (!array.length) return null;
+  if (array.length === 1) return array[0];
+ 
+  for (var i = 0; i < array.length; i++) {
+    if (array[i].length > largestWord.length) {
+      largestWord = array[i];
       }
-      return largestWord;
-  }
-} 
+    }
+  return largestWord;
+}
+ 
 findLongestWord(words);
 // Iteration #3: Calculate the sum
 
 const numbers = [6, 12, 1, 18, 13, 16, 2, 1, 8, 10];
 
+function sumArray(numbers) {
+  let temp = 0;
+  for (let number of numbers) {
+    temp += number;
+  }
+  return temp;
+}
+sumArray(numbers);
+
 // Iteration #4: Calculate the average
 // Level 1: Array of numbers
 const numbersAvg = [2, 6, 9, 10, 7, 4, 1, 9];
+
+function averageNumbers(numbers) {
+  if (!numbers.length) return null;
+  else return sumArray(numbers) / numbers.length;
+}
+
+averageNumbers(numbersAvg);
 
 // Level 2: Array of strings
 const wordsArr = [
@@ -44,6 +61,15 @@ const wordsArr = [
   'fuel',
   'palace'
 ];
+
+function averageWordLength(words) {
+  if (!words.length) return null;
+  let wordLengths = [];
+  for (let word of words) {
+    wordLengths.push(word.length);
+  }
+  return averageNumbers(wordLengths);
+};
 
 // Iteration #5: Unique arrays
 const wordsUnique = [
@@ -60,6 +86,17 @@ const wordsUnique = [
   'bring'
 ];
 
+function uniquifyArray(words) {
+  let uniqueArr = [];
+
+  for (let word of words) {
+    if (!uniqueArr.includes(word)) uniqueArr.push(word);
+  }
+  return uniqueArr;
+};
+
+uniquifyArray(wordsUnique);
+
 // Iteration #6: Find elements
 const wordsFind = [
   'machine',
@@ -71,6 +108,13 @@ const wordsFind = [
   'truth',
   'disobedience'
 ];
+
+function doesWordExist(arr, word) {
+  if (arr.length === 0) return false;
+  return arr.includes(word);
+}
+
+doesWordExist(wordsFind);
 
 // Iteration #7: Count repetition
 const wordsCount = [
@@ -87,6 +131,15 @@ const wordsCount = [
   'matter'
 ];
 
+function howManyTimes(arr, word) {
+  let count = 0;
+  for (let el of arr) {
+    if (el === word) count++;
+  }
+  return count;
+}
+
+howManyTimes(wordsCount);
 // Iteration #8: Bonus
 
 const matrix = [
@@ -111,3 +164,36 @@ const matrix = [
   [20, 73, 35, 29, 78, 31, 90, 1, 74, 31, 49, 71, 48, 86, 81, 16, 23, 57, 5, 54],
   [1, 70, 54, 71, 83, 51, 54, 69, 16, 92, 33, 48, 61, 43, 52, 1, 89, 19, 67, 48]
 ];
+
+// function greatestProduct(matrix) {
+//   let greatest = 0;
+  
+//   let horizontal = 0;
+//   let vertical = 0;
+//   let diagonal = 0;
+//   let inverseDiagonal = 0
+  
+//   for (let ver = 0; ver < matrix.length - 3; ver++) {
+//     for (let hor = 0; hor < matrix.length - 3; hor++) {
+//       horizontal = matrix[ver][hor] * matrix[ver][hor+1] * matrix[ver][hor+2] * matrix[ver][hor+3]
+//       if (horizontal > greatest) { greatest = horizontal}
+      
+//       vertical = matrix[ver][hor] * matrix[ver+1][hor] * matrix[ver+2][hor] * matrix[ver+3][hor]
+//       if (vertical > greatest) { greatest = vertical}
+      
+//       diagonal = matrix[ver][hor] * matrix[ver+1][hor+1] * matrix[ver+2][hor+2] * matrix[ver+3][hor+3]
+//       if (diagonal > greatest) { greatest = diagonal}
+      
+//       inverseDiagonal = matrix[ver][hor+3] * matrix[ver+1][hor+2] * matrix[ver+2][hor+1] * matrix[ver+3][hor]
+//       if (inverseDiagonal > greatest) { greatest = inverseDiagonal}
+      
+//       // first iteration:  ver 0 hor 0
+//       // horizontal:       0 0 * 0 1 * 0 2 * 0 3
+//       // vertical:         0 0 * 1 0 * 2 0 * 3 0
+//       // diagonal:         0 0 * 1 1 * 2 2 * 3 3
+//       // inverseDiagonal:  0 3 * 1 2 * 2 1 * 3 0
+      
+//     }
+//   }
+//   return greatest
+// }
